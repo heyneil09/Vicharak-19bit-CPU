@@ -1,0 +1,24 @@
+module CPU(input clk,reset);
+
+wire [19:0] proCount, proCount_next,proCount_update, writeData,instruction, alu_result,memoryData;
+wire[4:0]opcode;
+wire[3:0]rs1,rs2,rd;
+wire[9:0]immediate;
+wire[18:0] data1,data2,address;
+wire regwrite,memoryRead,memoryWrite,branch,jump,call,ret;
+
+ProgramCounter pc (.clk(clk),.reset(reset),.update(proCount_update),.branch(branch),.jump(jump),.call(call),.ret(ret),.proCount_in(progCount_next),.jumpAddress(address),.proCount_out(proCount));
+
+InstFetch if (.clk(clk),.reset(reset),.proCount_in(proCount),.proCount_next(proCount_next),.instruction(instruction));
+
+InstaDec id (.*);
+
+RegisterFile rf (.*);
+
+ALU alu(.op1(data1),.op2(data2,.*));
+
+ControlUnit cu (.*);
+
+DataMemory dmmodule(.clk(clk),.memoryRead(memoryRead),.memoryWrite(memoryWrite),.address(alu_result),.data_in(data2),data_out(memoryData));
+
+endmodule

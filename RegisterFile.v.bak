@@ -1,0 +1,19 @@
+module RegisterFile(
+input clk,regWrite,
+input[3:0] rs1,rs2,rd,
+input[18:0]writeData,
+output[18:0] data1,data2);
+
+reg [18:0] register [0:15];//16 reg
+
+assign data1 =register[rs1];
+assign data2 = register[rs2];
+
+always@(posedgeclk)
+begin 
+if(regWrite)
+begin 
+register[rd]<=writeData;
+end 
+end 
+endmodule

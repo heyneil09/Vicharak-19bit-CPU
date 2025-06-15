@@ -1,0 +1,35 @@
+module ALU(
+input[18:0] op1,op2,
+input[4:0] opcode,
+input[9:0] immediate,
+output reg [18:0]alu_result);
+
+always@(8)
+begin 
+case (opcode)
+
+5'b00000 : alu_result= op1+op2;
+5'b00001 : alu_result= op1-op2;
+5'b00010 : alu_result= op1*op2;
+5'b00011 : alu_result= op1/op2;
+5'b00100 : alu_result= op1&op2;
+5'b00101 : alu_result= op1|op2;
+5'b00110 : alu_result= op1^op2;
+5'b00111 : alu_result= ~op1;
+5'b01000 : alu_result= op1*op2+alu_result;//MAC
+5'b01001 : alu_result= op1*op1;//sqr
+5'b01010 : alu_result= (op1>0)?op1:-op1;//absolute
+5'b01011 : alu_result= op1+op2>>1;//avg
+5'b01100 : alu_result= op1+1;
+5'b01101 : alu_result= op1-1;
+5'b01110 : alu_result= (op1==op2)?1:0;
+5'b01111 : alu_result= (op1!=op2)?1:0;
+5'b10000 : alu_result= op1+{{8{immediate[9]}},immediate};//ADDI
+5'b10001 : alu_result= op1-{{8{immediate[9]}},immediate};//SUBI
+5'b10010 : alu_result= op1&{{8{immediate[9]}},immediate};//ANDI
+5'b10011 : alu_result= op1|{{8{immediate[9]}},immediate};//orI
+
+default: alu_result=0;
+endcase
+end 
+endmodule

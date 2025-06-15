@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at DataMemory.v(8): always construct contains both blocking and non-blocking assignments
+Warning (10262): Verilog HDL Event Control warning at ALU.v(7): event expression is a constant
