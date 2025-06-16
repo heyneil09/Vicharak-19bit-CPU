@@ -9,7 +9,7 @@ begin
 opcode = instruction[18:14];
 rs1 = instruction[13:10];
 rs2 = instruction[9:6];
-rs1 = instruction[5:2];
+rd = instruction[5:2];
 immediate= instruction[9:0];
 end 
 endmodule
