@@ -4,7 +4,7 @@ input[4:0] opcode,
 input[9:0] immediate,
 output reg [18:0]alu_result);
 
-always@(8)
+  always@(*)
 begin 
 case (opcode)
 
