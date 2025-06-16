@@ -1,8 +1,8 @@
 module ALU(
-  input[18:0] op1,op2,
-	input [4:0] opcode, 
-  input [9:0] immediate,
-	output reg [18:0] alu_result);
+input[18:0] op1,op2,
+input [4:0] opcode, 
+input [9:0] immediate,
+output reg [18:0] alu_result);
 always @(*) 
 begin
 case(opcode)
